@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Alberto Sabaini
+  description: Install Redash analysis platform connected to a remote database
+
+  license: BSD 2-Clause License
+
+  min_ansible_version: 2.9
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - bionic
+    - focal
+
+  galaxy_tags:
+    - docker
+    - redash
+    - ubuntu
+
+dependencies: []
+  
