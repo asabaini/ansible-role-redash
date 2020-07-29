@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: redash
   author: Alberto Sabaini
   description: Install Redash analysis platform connected to a remote database
 
