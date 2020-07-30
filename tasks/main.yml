@@ -15,7 +15,7 @@
     dest: "{{ redash_install_path }}/env"
     src: templates/env.j2
 
-- name: initialize database # noqa 305
+- name: initialize database  # noqa 305
   shell: "docker-compose -f {{ redash_install_path }}/docker-compose.yml run --rm server create_db"
   when: initialize_database
 
