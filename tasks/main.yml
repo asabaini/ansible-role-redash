@@ -1,0 +1,43 @@
+---
+# tasks file for ansible-role-redash
+- name: create redash directory
+  file:
+    path: "{{ redash_install_path }}"
+    state: directory
+
+- name: copy docker-compose.yml template
+  template:
+    dest: "{{ redash_install_path }}/docker-compose.yml"
+    src: templates/docker-compose.yml.j2
+
+- name: copy env template
+  template:
+    dest: "{{ redash_install_path }}/env"
+    src: templates/env.j2
+
+- name: initialize database  # noqa 305
+  shell: "docker-compose -f {{ redash_install_path }}/docker-compose.yml run --rm server create_db"
+  when: initialize_database
+
+- name: remove containers
+  docker_compose:
+    project_src: "{{ redash_install_path }}"
+    state: absent
+  when: initialize_database
+
+- name: copy service template
+  template:
+    dest: "/etc/systemd/system/redash.service"
+    src: redash.service.j2
+    group: root
+
+- name: enable service redash and ensure it is not masked
+  systemd:
+    name: redash
+    enabled: yes
+    masked: no
+
+- name: Run project or make sure it is running
+  docker_compose:
+    project_src: "{{ redash_install_path }}"
+    state: present

@@ -1,0 +1,28 @@
+---
+language: python
+services: docker
+
+env:
+  global:
+    - ROLE_NAME: redash
+  matrix:
+    - MOLECULE_DISTRO: ubuntu1804
+
+install:
+  # Install test dependencies.
+  - pip install molecule yamllint ansible-lint docker
+
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - cd ../
+  - mv ansible-role-$ROLE_NAME asabaini.$ROLE_NAME
+  - cd asabaini.$ROLE_NAME
+
+script:
+  # Run tests.
+  - yamllint .
+  - ansible-lint .
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
