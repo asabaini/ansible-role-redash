@@ -21,4 +21,19 @@
       failed_when: systemctl_status.rc > 1
 
   roles:
+    - role: geerlingguy.pip
+      vars:
+        pip_install_packages:
+          - name: docker
+          - name: docker-compose
+        pip_package: python3-pip
+        pip_executable: pip3
+    - role: geerlingguy.docker
+      vars:
+        docker_compose_version: "1.26.0"
+        docker_edition: "ce"
+        docker_version: "5:19.03.0~3-0~ubuntu-bionic"
+        docker_package: "docker-{{ docker_edition }}={{ docker_version }}"
+        docker_users:
+          - ubuntu
     - role: asabaini.redash

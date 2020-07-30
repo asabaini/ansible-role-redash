@@ -7,6 +7,8 @@ This [Ansible](https://www.ansible.com) role installs [Redash](https://redash.io
 * Access to a repository containing packages, likely on the internet.
 * A recent version of Ansible.
 * Access to a [PostgreSQL](https://postgresql.org) server.
+* docker
+* docker-compose
 
 ## Role Variables
 
