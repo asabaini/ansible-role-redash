@@ -1,2 +1,12 @@
 ---
 # defaults file for ansible-role-redash
+redash_install_path: /opt/redash
+redash_docker_image: redash/redash
+redash_version: 8.0.2.b37747
+postgres_user: postgres
+postgres_url: localhost
+postgres_db_name: postgres
+initialize_database: true
+postgres_password:
+cookie_secret:
+secret_key:
