@@ -37,3 +37,6 @@
         docker_users:
           - ubuntu
     - role: asabaini.redash
+      vars:
+        initialize_database: false
+        run_service: false

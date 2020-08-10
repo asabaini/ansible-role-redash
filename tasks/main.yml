@@ -17,13 +17,13 @@
 
 - name: initialize database  # noqa 305
   shell: "docker-compose -f {{ redash_install_path }}/docker-compose.yml run --rm server create_db"
-  when: initialize_database
+  when: initialize_database and run_service
 
 - name: remove containers
   docker_compose:
     project_src: "{{ redash_install_path }}"
     state: absent
-  when: initialize_database
+  when: initialize_database and run_service
 
 - name: copy service template
   template:
@@ -41,3 +41,4 @@
   docker_compose:
     project_src: "{{ redash_install_path }}"
     state: present
+  when: run_service

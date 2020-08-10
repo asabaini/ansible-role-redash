@@ -7,6 +7,7 @@ postgres_user: postgres
 postgres_url: localhost
 postgres_db_name: postgres
 initialize_database: true
+run_service: true
 postgres_password:
 cookie_secret:
 secret_key:
