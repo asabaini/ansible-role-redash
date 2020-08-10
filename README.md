@@ -19,6 +19,7 @@ This [Ansible](https://www.ansible.com) role installs [Redash](https://redash.io
 * `postgres_url`: defaults to `localhost`
 * `postgres_db_name`: defaults to `postgres`
 * `initialize_database`: defaults to `true` **WARNING: This option will delete any existing data from previous redash installation.**
+* `run_service`: defaults to `true`
 
 The following secrets should not be committed in the repository. Use `--extra-vars` to set them at runtime.
 
